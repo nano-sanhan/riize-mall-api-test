@@ -36,3 +36,17 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# 编译产物
+target/
+*.war
+*.jar
+
+# IDE 配置
+.idea/
+*.iml
+*.log
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
