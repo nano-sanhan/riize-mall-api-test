@@ -18,8 +18,10 @@ jobs:
         with:
           node-version: '20'
 
-      - name: 安装 Newman
-        run: npm install -g newman
+      - name: 安装 Newman 和 HTML 报告器
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-html
 
       - name: 运行接口测试
         run: |
