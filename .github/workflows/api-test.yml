@@ -17,6 +17,21 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
+      - name: 启动 MySQL 容器
+        run: |
+          docker run -d \
+            --name mysql-test \
+            -e MYSQL_ROOT_PASSWORD=root \
+            -e MYSQL_DATABASE=shoppingstore \
+            -p 3306:3306 \
+            mysql:8.0
+          # 等待 MySQL 完全启动
+          sleep 30
+
+      - name: 导入建表 SQL
+        run: |
+          mysql -h 127.0.0.1 -P 3306 -u root -proot shoppingstore < src/sql/shoppingstore.sql
+
       - name: 打包 war
         run: mvn clean package -DskipTests
 
