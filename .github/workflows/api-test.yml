@@ -29,9 +29,9 @@ jobs:
         run: |
           sed -i 's/port="8080"/port="8082"/g' apache-tomcat-9.0.111/conf/server.xml
 
-      - name: 部署 war（强制改名为 ShoppingStore.war）
+      - name: 部署 war（强制改名为 ShoppingStore_war.war）
         run: |
-          cp target/*.war apache-tomcat-9.0.111/webapps/ShoppingStore.war
+          cp target/*.war apache-tomcat-9.0.111/webapps/ShoppingStore_war.war
 
       - name: 启动 Tomcat
         run: |
@@ -39,7 +39,7 @@ jobs:
           sleep 90
 
       - name: 检查服务是否启动
-        run: curl -f http://localhost:8082/ShoppingStore || exit 1
+        run: curl -f http://localhost:8082/ShoppingStore_war || exit 1
 
       - name: 安装 Newman
         run: npm install -g newman newman-reporter-html
