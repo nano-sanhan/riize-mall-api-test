@@ -39,7 +39,7 @@ jobs:
           sleep 70
 
       - name: 检查服务是否启动
-        run: curl -f http://localhost:8082/你的项目名 || exit 1
+        run: curl -f http://localhost:8082/ShoppingStore_war || exit 1
 
       - name: 安装 Newman
         run: npm install -g newman newman-reporter-html
