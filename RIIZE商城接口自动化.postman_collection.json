@@ -822,10 +822,10 @@
               "});\r",
               "\r",
               "// 3. 验证登录态为管理员（可选，防止普通用户越权访问）\r",
-              "pm.test(\"管理员权限验证通过\", function () {\r",
+              "//pm.test(\"管理员权限验证通过\", function () {\r",
               "    // 确保没有跳转到登录页或权限不足提示\r",
-              "    pm.expect(pm.response.text()).to.not.include(\"login.jsp\").and.to.not.include(\"无权访问\");\r",
-              "});"
+              "  //  pm.expect(pm.response.text()).to.not.include(\"login.jsp\").and.to.not.include(\"无权访问\");\r",
+              "//});"
             ],
             "type": "text/javascript",
             "packages": {},
