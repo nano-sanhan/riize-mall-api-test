@@ -28,14 +28,14 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: 启动商城服务 (Maven)
+      - name: 启动商城服务 (Tomcat)
         run: |
-          # 后台启动 Spring Boot 服务
-          nohup mvn spring-boot:run &
-          # 等待服务启动（Spring Boot 一般需要 60 秒）
+          # 用 Maven Tomcat 插件启动服务，默认端口 8080
+          nohup mvn tomcat7:run &
+          # 等待启动（Tomcat 启动较慢，建议 60-90 秒）
           sleep 60
-          # 验证服务是否启动成功
-          curl -f http://localhost:8082 || exit 1
+          # 健康检查（注意端口是 8080，不是 8082！）
+          curl -f http://localhost:8080/shoppingstore || exit 1
 
       - name: 运行接口测试
         run: newman run "RIIZE商城接口自动化.postman_collection.json" \
