@@ -25,17 +25,21 @@ jobs:
           wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.111/bin/apache-tomcat-9.0.111.tar.gz
           tar xf apache-tomcat-9.0.111.tar.gz
 
+      - name: 修改 Tomcat 端口为 8082
+        run: |
+          sed -i 's/port="8080"/port="8082"/g' apache-tomcat-9.0.111/conf/server.xml
+
       - name: 部署 war
         run: |
-          cp target/*.war apache-tomcat-9.0.111/webapps/shoppingstore.war
+          cp target/*.war apache-tomcat-9.0.111/webapps/
 
       - name: 启动 Tomcat
         run: |
           nohup apache-tomcat-9.0.111/bin/startup.sh &
           sleep 70
 
-      - name: 检查服务是否启动成功
-        run: curl -f http://localhost:8080/shoppingstore || exit 1
+      - name: 检查服务是否启动
+        run: curl -f http://localhost:8082/你的项目名 || exit 1
 
       - name: 安装 Newman
         run: npm install -g newman newman-reporter-html
